@@ -21,16 +21,17 @@ async function createUser({ username, password, name, location }) {
 async function createPost({ authorId, title, content }) {
   try {
     const {
-      rows: [user],
+      rows: [post],
     } = await client.query(
-      `   INSERT INTO users(authorId, title, content) 
-            VALUES($1, $2, $3)
-            ON CONFLICT (authorId) DO NOTHING 
-            RETURNING *;
-        `,
+      `
+      INSERT INTO posts("authorId", title, content) 
+      VALUES($1, $2, $3)
+      RETURNING *;
+    `,
       [authorId, title, content]
     );
-    return user;
+
+    return post;
   } catch (error) {
     throw error;
   }
@@ -58,8 +59,9 @@ async function getAllPosts() {
   }
 }
 async function getPostsByUser(userId) {
+  console.log(userId);
   try {
-    const { rows } = client.query(`
+    const { rows } = await client.query(`
         SELECT * FROM posts
         WHERE "authorId"=${userId};
       `);

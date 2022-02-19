@@ -3,6 +3,9 @@ const {
   createUser,
   createPost,
   getAllUsers,
+  getAllPosts,
+  getUserById,
+  updatePost,
   updateUser,
 } = require("./index");
 
@@ -10,8 +13,8 @@ async function dropTables() {
   try {
     console.log("Starting to drop tables...");
     await client.query(`
-    DROP TABLE IF EXISTS users;
     DROP TABLE IF EXISTS posts;
+    DROP TABLE IF EXISTS users;
 
 
       `);
@@ -163,7 +166,5 @@ async function testDB() {
   }
 }
 
-rebuildDB()
-  .then(testDB)
-  .catch(console.error)
-  .finally(() => client.end());
+rebuildDB().then(testDB).catch(console.error);
+// .finally(() => client.end());
