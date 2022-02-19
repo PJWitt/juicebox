@@ -9,8 +9,17 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "pg": "^8.7.3"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PJWitt/juicebox.git"
+  },
+  "bugs": {
+    "url": "https://github.com/PJWitt/juicebox/issues"
+  },
+  "homepage": "https://github.com/PJWitt/juicebox#readme",
+  "description": ""
 }
